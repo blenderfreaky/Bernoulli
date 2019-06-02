@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=2.5cm,footskip=0.5cm]{geometry}
+\usepackage{amsmath}
+\newcommand{\overtext}[2]{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily #2}}}{#1}}}
+\usepackage{mathtools}
+\usepackage{scalerel,amssymb}
+\usepackage{amsthm}
+\usepackage{tikz,pgfplots}
+\newcommand{\comment}[1]{}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\begin{document}
+\title{\vspace{-2.0cm}Sommerschule}
+\author{Nikolas Kilian
+Projektleiter: Eren Ucar}
+\date{\today}
+\maketitle
+
+\section{Brenoulli Zahlen und Polynome}
+\subsection{Bernoulli Zahlen}
+\subsubsection{Definition}
+
+Die Bernoulli Zahlen \(B_n, n \in \mathbb{N}_0\), bilden eine rationale Zahlenfolge.
+Sie sind rekursiv wie folgt definiert.
+\[B_0 := 1\]
+\[\sum_{k=0}^n {n+1 \choose k} \cdot B_k = 0, n \in \mathbb{N}\]
+
+\subsection{Bernoulli Polynome}
+\subsubsection{Definition}
+
+Die Bernoulli Polynome \(B_n:\mathbb{R}\to\mathbb{R},n\in\mathbb{N}_0\), sind wie folt definiert:
+\[B_n(x) := \sum_{k=0}^n {n \choose k} \cdot B_k \cdot x^{n-k}, x\in\mathbb{R}\]
+
+\[n = 0: B_0(x) = 1\]
+\[n = 1: B_1(x) = x - \frac{1}{2}\]
+\[n = 2: B_2(x) = x^2 - x + \frac{1}{6}\]
+
+\subsubsection{Eigenschaften}
+\paragraph{E1} 
+\[B_n(0) = B_n(1), \forall n\in\mathbb{N}, n \neq 1\]
+
+\begin{proof}[Beweis]
+\[B_n(0) = B_n(1), \forall n\in\mathbb{N}, n \neq 1\]
+\[\sum_{k=0}^n {n \choose k} \cdot B_k \cdot 0^{n-k} = \sum_{k=0}^n {n \choose k} \cdot B_k \cdot 1^{n-k}\]
+\[\sum_{k=0}^n {n \choose k} \cdot B_k \cdot 0 = \sum_{k=0}^n {n \choose k} \cdot B_k \cdot 1\]
+\[0 = \sum_{k=0}^n {n \choose k} \cdot B_k\]
+Gilt laut Definition.
+\end{proof}
+
+\paragraph{E2} 
+\[\frac{d}{dx} B_n(x) = n \cdot B_{n-1}(x), \forall n\in\mathbb{N}, n \geq 1\]
+
+\begin{proof}[Beweis]
+\[\frac{d}{dx} B_n(x) = n \cdot B_{n-1}(x), \forall n\in\mathbb{N}, n \geq 1\]
+\[\frac{d}{dx} \sum_{k=0}^n {n \choose k} \cdot B_k \cdot x^{n-k} = n \cdot \sum_{k=0}^{n-1} {n-1 \choose k} \cdot B_k \cdot x^{n-1-k}\]
+\[\sum_{k=0}^n {n \choose k} \cdot B_k \cdot \frac{d}{dx} x^{n-k} = \sum_{k=0}^{n-1} n \cdot {n-1 \choose k} \cdot B_k \cdot x^{n-1-k}\]
+Da der Terrm für \(k=n\) konstant ist, ist dessen Ableitung 0. Es kann demnach aus der Summenformel ausgelassen werden.
+\[\sum_{k=0}^{n-1} {n \choose k} \cdot B_k \cdot (n-k) \cdot x^{n-k-1} = \sum_{k=0}^{n-1} n \cdot {n-1 \choose k} \cdot B_k \cdot x^{n-1-k}\]
+Der nächste Schritt wird dem unüberzeugtem Leser als Übung überlassen.
+\end{proof}
+
+\paragraph{E3} 
+\[\int_0^1 B_n(x) dx = 0, \forall n\in\mathbb{N}, n \geq 1\]
+
+\begin{proof}[Beweis]
+\[\int_0^1 B_n(x) dx = 0, \forall n\in\mathbb{N}, n \geq 1\]
+\[\int_0^1 B_n(x) dx \overtext{=}{(E2)} \left. \frac{1}{n+1} B_{n+1}(x) \right|_0^1 \overtext{=}{(E1)} 0\]
+\end{proof}
+
+\subsection{Alternative Definition}
+
+Die Bernoulli Polynome kann man über folgender Funktionalgleichungen charakterisieren.
+
+\newtheorem{theorem}{Theorem}[section]
+\begin{theorem}[Theorem]
+Für \(n \in \mathbb{N}, x \in \mathbb{R}\) gilt:
+
+\[F_n(x) = B_n(x+1) - B_n(x) = nx^{n-1}\]
+\end{theorem}
+
+\[B_n(x+1) - B_n(x) = nx^{n-1}\]
+\begin{proof}
+%\paragraph{Induktionsanfang}
+Sei \(n = 0\).
+Es gilt \[F_0(x) = B_0(x+1) - B_0(x) = 0x^{0-1}\]
+\begin{proof}
+\[F_0(x) = B_0(x+1) - B_0(x) = 0x^{0-1}\]
+\[F_0(x) = \sum_{k=0}^0 {0 \choose k} \cdot B_k \cdot x^{0-k} - \sum_{k=0}^0 {0 \choose k} \cdot B_k \cdot x^{0-k} = 0x^{0-1}\]
+\[F_0(x) = B_0 \cdot x^{-k} - B_0 \cdot x^{-k} = 0x^{0-1}\]
+\[F_0(x) = 1 - 1 = 0\]
+\end{proof}
+
+%\paragraph{Induktionsbehaupptung}
+Sei \(n \in \mathbb{N}, n \geq 0\) beliebig aber fest gewählt.
+\[B_n(x+1) - B_n(x) = nx^{n-1} \Longrightarrow B_{n+1}(x+1) - B_{n+1}(x) = (n+1) \cdot x^n\]
+
+%\paragraph{Induktionsschritt}
+\begin{proof}
+\[B_{n+1}(x+1) - B_{n+1}(x) = (n+1) \cdot x^n\]
+\[\frac{d}{dx} B_{n+1}(x+1) - \frac{d}{dx} B_{n+1}(x) = \frac{d}{dx} (n+1) \cdot x^n\]
+\[(n+1) \cdot B_{n+1-1}(x+1) - (n+1) \cdot B_{n+1-1}(x) = (n+1) \cdot nx^{n-1}\]
+\[B_{n}(x+1) - B_{n}(x) = nx^{n-1}\]
+\end{proof}
+
+Da \(n\) beliebig aber fest gewählt ist, gilt die Behauptung für alle \(n \in \mathbb{N}, n \geq 0\).
+\end{proof}
+
+\newtheorem{corollary}{Corollary}[theorem]
+\begin{corollary}
+\[B_{2m+1}=0, \forall m \in \mathbb{N}\]
+\end{corollary}
+\begin{proof}
+\[B_{n+1}(x+1) - B_{n+1}(x) = (n+1) \cdot x^n\]
+Sei \(x := -\frac{1}{2}\)
+\[B_{n+1}\left(1-\frac{1}{2}\right) - B_{n+1}\left(-\frac{1}{2}\right) = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
+\[B_{n+1}\left(\frac{1}{2}\right) - B_{n+1}\left(-\frac{1}{2}\right) = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
+\[\sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot \left(\frac{1}{2}\right)^{n+1-k} - \sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot \left(-\frac{1}{2}\right)^{n+1-k} = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
+\[\sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot \left(\left(\frac{1}{2}\right)^{n+1-k} - \left(-\frac{1}{2}\right)^{n+1-k}\right) = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
+\end{proof}
+
+\begin{corollary}
+\[\sum_{k=1}^N k^n = \frac{B_{n+1}(N+1)-B_{n+1}}{n+1}, n, N \in \mathbb{N}\]
+\end{corollary}
+\begin{proof}
+\[\sum_{k=1}^N k^n = \frac{B_{n+1}(N+1) - B_{n+1}}{n+1}\]
+\[\sum_{k=1}^N (n+1) \cdot k^n = B_{n+1}(N+1) - B_{n+1}\]
+\[\sum_{k=1}^N B_{n+1}(k+1) - B_{n+1}(k) = B_{n+1}(N+1) - B_{n+1}\]
+\[B_{n+1}(N+1) - B_{n+1}(1) = B_{n+1}(N+1) - B_{n+1}\]
+\[B_{n+1}(N+1) - \sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot 1^{n+1-k} = B_{n+1}(N+1) - B_{n+1}\]
+\[B_{n+1}(N+1) - {n+1 \choose n+1} \cdot B_{n+1} - \sum_{k=0}^{n} {n+1 \choose k} \cdot B_k = B_{n+1}(N+1) - B_{n+1}\]
+Laut Definition der Bernoulli Zahlen gilt:
+\[B_{n+1}(N+1) - 1 \cdot B_{n+1} - 0 = B_{n+1}(N+1) - B_{n+1}\]
+\[B_{n+1}(N+1) - B_{n+1} = B_{n+1}(N+1) - B_{n+1}\]
+\end{proof}
+
+\end{document}

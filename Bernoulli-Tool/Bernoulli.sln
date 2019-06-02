@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bernoulli", "Bernoulli\Bernoulli.csproj", "{DB150F9C-620C-439B-A192-1E03EDBC7EEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {95AEB68D-49A3-4196-9BB2-9763D6D971D8}
+	EndGlobalSection
+EndGlobal
