@@ -1,30 +1,85 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 
 namespace Bernoulli
 {
-    class Program
+    using DecRow = System.Collections.Generic.IEnumerable<(BigInteger index, decimal value)>;
+    using FracRow = System.Collections.Generic.IEnumerable<(BigInteger index, Fractional value)>;
+    using IntRow = System.Collections.Generic.IEnumerable<(BigInteger index, BigInteger value)>;
+
+    static class Program
     {
         static void Main(string[] args)
         {
-            BernoulliNumbers(100000);
+            Console.WriteLine(Harmonic().Get(10));
+            //HarmonicDeviation(10000);
+            //BernoulliNumbers(100000);
         }
 
-        private static void BernoulliNumbers(int amount)
+        public static FracRow FactorialApprox()
         {
-            Fractional[] bernoulli = new Fractional[amount];
-            bernoulli[0] = 1;
+            //for (BigInteger n = 0; ; n++) yield return (n, Math.Sqrt(2*Math.PI*n));
+        }
+
+        public static IntRow Factorial()
+        {
+            BigInteger product = 1;
+            for (BigInteger i = 1; ; i++) yield return (i-1, product *= i);
+        }
+
+        public static void ApproximateGamma(int m, int n)
+        {
+
+        }
+
+        public static void Get(this DecRow row, BigInteger index) => row.First(x => x.index == index);
+        public static void Get(this FracRow row, BigInteger index) => row.First(x => x.index == index);
+
+        public static void Print(this DecRow row, BigInteger count)
+        {
+            foreach (var (index, value) in row)
+            {
+                if (count-- == 0) return;
+                Console.WriteLine($"{index}: {value}");
+            }
+        }
+        public static void Print(this FracRow row, BigInteger count)
+        {
+            foreach (var (index, value) in row)
+            {
+                if (count-- == 0) return;
+                Console.WriteLine($"{index}: {value}");
+            }
+        }
+
+        public static void HarmonicDeviation() => Harmonic().Select(x => (x.index, x.value - (decimal)Math.Log((ulong)x.index))).Print();
+
+        public static DecRow Harmonic()
+        {
+            decimal sum = 0;
+
+            for (ulong k = 1; ; k++) yield return (k, sum += 1m / k);
+        }
+
+        private static FracRow BernoulliNumbers()
+        {
+            List<Fractional> bernoulli = new List<Fractional>
+            {
+                [0] = 1
+            };
             Console.WriteLine($"B_{0}: {bernoulli[0]}");
 
-            for (long n = 1; n < amount; n++)
+            for (int n = 1; ; n++)
             {
                 Fractional currentSum = 0;
-                for (long k = 0; k < n; k++)
+                for (int k = 0; k < n; k++)
                 {
                     currentSum += Choose(n + 1, k) * bernoulli[k];
                 }
-                bernoulli[n] = (-currentSum / Choose(n + 1, n)).Shorten();
 
-                Console.WriteLine($"B_{n}: {bernoulli[n]}");
+                yield return (n, bernoulli[n] = (-currentSum / Choose(n + 1, n)).Shorten());
             }
         }
 

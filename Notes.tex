@@ -5,7 +5,7 @@
 \usepackage{mathtools}
 \usepackage{scalerel,amssymb}
 \usepackage{amsthm}
-\usepackage{tikz,pgfplots}
+\usepackage{tikz}
 \newcommand{\comment}[1]{}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \begin{document}
@@ -14,6 +14,8 @@
 Projektleiter: Eren Ucar}
 \date{\today}
 \maketitle
+
+\tableofcontents
 
 \section{Brenoulli Zahlen und Polynome}
 \subsection{Bernoulli Zahlen}
@@ -150,7 +152,7 @@ Wir setzen die Bernoulli Polynome auf \([0,1)\) periodisch fort auf \(\mathbb{R}
 
 \begin{theorem}{Einfache Euler'sche Summenformel}
 Sei \(n\in\mathbb{N}\) beliebig und \(f : [0, n] \to \mathbb{R}\) eine stetig differenzierbare Funktion.
-\[\sum_{k=0}^n f(k) = \int_0^n f(x) dx + \frac{1}{2} \cdot (f(0) + f(n)) + R\]
+\[\sum_{k=0}^n f(k) = \int_0^n f(x) dx + \frac{1}{2} \cdot (f(0) + f(n)) + R_1\]
 wobei \(R_1 := \int_0^n f'(x) \cdot P_1(x) dx\)
 \end{theorem}
 \begin{proof}
@@ -185,6 +187,197 @@ Wegen Satz 1 reicht es zu zeigen \(\int_0^n f'(x) P_1(x) dx = \sum_{k=2}^m \left
 \[\int_0^n f'(x) P_1(x) dx = \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)}(x) \right|_{x=0}^n + R_m\]
 \[\int_0^n f'(x) P_1(x) dx = \left. \frac{1}{2!} f'(x) P_2(x) \right|_{x=0}^n + \left. \frac{1}{3!} f''(x) P_3(x) \right|_{x=0}^n + ...\]\[ + \left. \frac{1}{(m)!} f^{(m-1)}(x) P_{m}(x) \right|_{x=0}^n + \frac{(-1)^{m+1}}{m!} \int_0^n f^{(m)}(x) P_m(x) dx \]
 \[ = \sum_{k=2}^m \frac{P_{k}(x)}{k!} f^{(k-1)}(x) + \frac{(-1)^{m+1}}{m!} \int_0^n f^{(m)}(x) P_m(x) dx \]
+\end{proof}
+
+\section{Anwendungen der Euler'schen Summenformel}
+\subsection{Faulhaber Formel}
+
+Sei \(n \in \mathbb{N}\).
+
+\begin{align*}
+1^1+2^1+3^1+5^1+...+n^1 &= \frac{n(n+1)}{2}=\frac{1}{2}n^2+\frac{1}{2}n \\
+1^2+2^2+3^2+5^2+...+n^2 &= \frac{1}{3}n^3 + \frac{1}{2}n^2+\frac{1}{6}n \\
+1^3+2^3+3^3+5^3+...+n^3 &= \frac{1}{4}n^4 + \frac{1}{2}n^3 + \frac{1}{4}n^2+0n \\
+1^p+2^p+3^p+5^p+...+n^p &= ?
+\end{align*}
+
+\begin{theorem}
+Für \(n, p \in \mathbb{N}\) gilt:
+
+\[\sum_{k=1}^n k^p = \frac{1}{p+1} \sum_{k=0}^p {p+1 \choose k} (-1)^k B_k \cdot n^{p+1-k}\]
+\end{theorem}
+\begin{proof}
+Wir verwenden die Eulersche  Summenformel. (Satz 2)
+
+%TODO
+\begin{align*}
+\sum_{k=1}^n k^p &= \sum_{k=0}^n k^p - 0^p \\
+&= \int_0^n x^p dx + \frac{1}{2}(0^p+n^p) + \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)}(x) \right|_{x=0}^n + R_m \\
+&= \left. \frac{x^{p+1}}{p+1} \right|_{x=0}^n + \frac{1}{2}n^p + \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)}(x) \right|_{x=0}^n + \frac{(-1)^{m+1}}{m!} \int_0^n f^{(m)}(x) P_m(x) dx \\
+&= \left. \frac{x^{m+1}}{m+1} \right|_{x=0}^n + \frac{1}{2}n^m + \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)}(x) \right|_{x=0}^n + \frac{(-1)^{m+1}}{m!} \int_0^n m! P_m(x) dx \\
+\end{align*}
+\end{proof}
+
+\subsection{Euler-Konstante}
+
+Für \(n\in\mathbb{N}, H_n := \sum_{k=1}^n \frac{1}{k}\)  (n-te harmonische Zahl)
+Betrachte \(x_n := H_n - ln(n)\). Diese Folge konvergiert. \(\gamma  := \lim_{n\to\infty} x_n \approx 0,577\)
+\comment{
+\begin{theorem}
+\(x_n\) konvergiert.
+\end{theorem}
+\begin{proof}
+\begin{align*}
+x_n - x_{n-1} &= H_n - ln(n) - H_{n-1} + ln(n-1) \\
+&= H_n - ln(n) - H_{n-1} + ln(n-1) \\
+&= H_n - H_{n-1} - (ln(n) - ln(n-1)) \\
+&= \sum_{k=1}^n \frac{1}{k} - \sum_{k=1}^{n-1} \frac{1}{k} - (ln(n) - ln(n-1)) \\
+&= \frac{1}{n} - \underbrace{(ln(n) - ln(n-1))}_{\to 0\text{, da \(ln'(x) \to 0\) gilt}} \\
+\end{align*}
+\end{proof}
+}
+
+\begin{theorem}
+\(x_n\) konvergiert.
+\end{theorem}
+\begin{proof}
+Behauptung: \(x_n\) ist monoton fallend.
+\begin{proof}
+\begin{align*}
+&& x_n &\geq x_{n+1} \\
+\iff && x_n - x_{n+1} &\geq 0 \\
+\iff && \left(\sum_{k=0}^n \frac{1}{k} - ln(n)\right) - \left(\sum\right) &\geq 0 \\
+\end{align*} %TODO
+\end{proof}
+\end{proof}
+
+\begin{theorem}
+Es gelten folgende Gleichungen:
+
+\begin{equation}
+\gamma = \frac{1}{2} - \int_1^{\infty} \frac{P_1(x)}{x^2} dx \label{eq:1}
+\end{equation}
+
+Für \(m \geq 2\):
+
+\begin{equation}
+\gamma = \frac{1}{2} + \sum_{k=2}^m \frac{B_k}{k} - \int_1^{\infty} \frac{P_m(x)}{x^{m+1}} dx \label{eq:2}
+\end{equation}
+
+\begin{equation}
+\gamma = \left( \sum_{k=1}^n\frac{1}{k} \right) - ln(n) - \frac{1}{2n} + \sum_{k=2}^m \frac{B_k}{k \cdot n^k} - \int_n^{\infty} \frac{P_m(x)}{x^{m+1}} dx \label{eq:3}
+\end{equation}
+
+\end{theorem}
+\begin{proof}
+
+%\subparagraph{zu \eqref{eq:1}}
+Verwende Satz 1 mit \(f(x) := \frac{1}{x + 1}, n \geq 2\)
+
+\[\sum_{k=1}^n \frac{1}{k} = \sum_{k=0}^{n-1} f(k) \overtext{=}{(Satz 1)} \int_0^{n-1} f(x) dx + \frac{1}{2} (f(0) + f(n-1)) + \int_0^{n-1} f'(x) P_1(x) dx\]
+\[\left. \underbrace{ln(x+1)}{=ln(x)} \right|_{x=0}^{n-1} + \frac{1}{2}\left(1 + \frac{1}{n}\right) + \underbrace{\int_0^{n-1} \frac{1}{(x+1)^2} P_1(x) dx}{=\int_1^n \frac{P_1(x)}{x^2} dx}\]
+\[\Longrightarrow \sum_{k=1}^n \frac{1}{k} - ln(n) = \frac{1}{2} + \frac{1}{2n} - \int_11^n \frac{P_1(x)}{x^2} dx\]
+
+Nach Grenzwertbildung \(\lim_{n \to \infty}\) folgt die Aussage (1).
+
+%\subparagraph{zu \eqref{eq:2}}
+Verwende Satz 2 mit \(f(x) := \frac{1}{x+1}, n \geq 2\)
+
+\[f'(x) = (-1) \cdot \frac{1}{(x+1)^2}, f''(x) = (-1)^2 \cdot 2! \frac{1}{(x+1)^3}, ..., f^{(k-1)}(x) = (-1)^{k-1} \cdot (k-1)! \frac{1}{(x+1)^k}\]
+Es gilt nun
+
+\begin{align*}
+\sum_{k=1}^n \frac{1}{k} &= \sum_{k=0}^{n-1} f(k) \\
+&\overtext{=}{(Satz 2)} \int_0^{n-1} f(x) dx + \frac{1}{2} \left(1 + \frac{1}{n}\right) + \sum_{k=2}^m \left. \frac{(-1)^k B_k (-1)^{k-1}\cdot(k-1)}{k! (x+1)^k} \right|_{x=0}^{n-1} \\
+&\; + \frac{(-1)^{m+1}}{m!} \int_0^{n-1} P_m(x) \cdot (-1)^m \cdot m! \frac{1}{(x+1)^{m+1}} dx \\
+\Longrightarrow \gamma &= \lim_{n \to \infty} \left(\sum_{k=1}^n \frac{1}{k} - ln(n)\right) = \frac{1}{2} + \sum_{k=2}^m \frac{B-k}{k} - \int_1^{\infty} \frac{P_m(x)}{x^m} dx \\
+&= \frac{1}{2} + \sum_{k=2}^m \frac{B_k}{k} + \left(-\int_1^n \frac{P_m(x)}{x^m} dx\right) + \left(-\int_n^{\infty} \frac{P_m(x)}{x^m} dx\right) \\
+\end{align*}
+\[\Longrightarrow \sum_{k=1}^n \frac{1}{k} ln(n) + \frac{1}{2} + \frac{1}{2n} + \sum_{k=2}^m \frac{(-1) \cdot B_k}{k} \cdot \left(\frac{1}{n^k} - 1\right) = -\int_1^n \frac{P_m(x)}{x^m} dx \\
+\]
+
+Um \eqref{eq:3} zu beweisen, setzen wir folgende Darstellung in (2) ein:
+
+Aus (*) folgt
+
+%TODO
+\begin{align*}
+\gamma &= \frac{1}{2} + \sum_{k=2}^m \frac{B_k}{k} + \left(-\int_1^n \frac{P_m(x)}{x^m} dx\right) + \left(-\int_n^{\infty} \frac{P_m(x)}{x^m} dx\right) \\
+\gamma &= \frac{1}{2} + \sum_{k=2}^m \frac{B_k}{k} + \left(\sum_{k=1}^n \frac{1}{k} ln(n) + \frac{1}{2} + \frac{1}{2n} + \sum_{k=2}^m \frac{(-1) \cdot B_k}{k} \cdot \left(\frac{1}{n^k} - 1\right)\right) + \left(-\int_n^{\infty} \frac{P_m(x)}{x^m} dx\right) \\
+\end{align*}
+\end{proof}
+
+Man kann zeigen, dass gilt: 
+\[|B_m(x)| \leq \frac{4m!}{(2\pi)^m} \forall m \in \mathbb{N}, x \in [0, 1\]
+
+Es gilt \(B_2 = \frac{1}{6}, B_3 = 0\). Einsetzen in (3) ergibt:
+
+\[\gamma = \underbrace{\sum_{k=1}^{10} \frac{1}{k} - ln(10) - \frac{1}{2\cdot10} + \frac{1}{12\cdot10^2}}_{} - \underbrace{\int_{10}^{\infty} \frac{P_3(x)}{x^4} dx}_{=:R}\]
+\[= 0,577216... + R\]
+
+Es gilt: \(R \leq \int_{10}^{\infty} \frac{|P_3(x)}{x^4} dx \leq 10^{-1} \cdot \underbrace{\int_{10}^{\infty} \frac{1}{x^4} dx}_{=\frac{1}{3}10^{-3}} \leq \frac{1}{3}10^{-4} \leq 4\cdot10^{-5}\)
+
+\subsection{Stirling'sche Formel}
+Seien \((x_n)_{n\in\mathbb{N}}, (y_n)_{n\in\mathbb{N}}\) zwei reelle Zahlenfolgen wobei \(y_n, x_n \neq 0\) für alle \(n \in \mathbb{N}\).
+Dann heißen \((x_n), (y_n)\) asymptotisch gleich für \(h \to \infty\) genau dann, wenn
+
+\[\lim_{n\to\infty} \frac{x_n}{y_n} = 1\]
+
+\subsubsection{Beispiel}
+\[H_n := \sum_{k=1}^n \frac{1}{k}, ln(n) =: y_n\]
+\begin{theorem}
+\[H_n ~ y_n, n \to \infty\]
+\end{theorem}
+\begin{proof}
+Wissen: \(H_n - y_n \overtext{\longrightarrow}{n\to\infty} \gamma\)
+%TODO
+\begin{align*}
+\Longrightarrow \exists_{C > 0, s_d |H_n - y_n| &\leq C \forall_{n\in\mathbb{N}} \\
+\end{align*}
+\end{proof}
+
+\[x_n := n! = 1\cdot2\cdot3\cdot...\cdot n\]
+
+\begin{theorem}
+Stirling'sche Formel
+
+Es gilt
+
+\[n! ~ \sqrt{2 \pi n} \cdot \left(\frac{n}{e}\right)^n, n\to\infty\]
+
+\[x_n := n^2 + n\]
+\[y_n := n^2\]
+%TODO
+\end{theorem}
+
+\begin{theorem}
+Verwenden wir Satz 2 mit \(m = 3\)
+
+\[f(x) := ln(x+1), n \geq 2\]
+
+\begin{align*}
+ln(n!) &= \sum_{k=1}^n ln(k) &= \sum_{k=0}^{n-1} f(k) \\
+&\overtext{=}{(Satz 2)} \int_0^{n-1} f(x) dx + \frac{1}{2}(f(0)+f(n-1)) + \left. \frac{B_2}{2} f'(x) \right|_{x=0}^{n-1} + \frac{1}{3!} \int_0^{n-1} f^{(3)}(x) \cdot P_3(x) dx \\
+&= \left. x \cdot ln(x) - x \right|_1^n + \left. \frac{1}{2}ln(n) + \frac{1}{12}\cdot\frac{1}{x+1} \right|_0^{n-1} + \frac{1}{3}\cdot\int_1^n \frac{1}{x^3} P_3(x) dx \\
+&= n\ln(n) - n + 1 + \frac{1}{2} ln(n) + \frac{1}{12}\left(\frac{1}{n} - 1\right) + \frac{1}{3} \int_1^n \frac{P_3(x)}{x^3} dx \\
+\end{align*}
+\[\Longrightarrow ln(n!) - n\ln(n) + n - \frac{1}{2}ln(n) = \frac{11}{12} + \frac{1}{12n} + \frac{1}{3} \int_1^n \frac{P_3(x)}{x^3} dx\]
+
+Wir sehen an der obigen Formel, dass \(s_n\) konvergiert, das heißt \(\exists s\in\mathbb{R}\), so dass
+
+\[s = \lim_{n\to\infty} s_n\]
+
+\begin{align*}
+\Longrightarrow p &= e^s \\
+&= \lim_{n\to\infty} e^{s_n} \\
+&= \lim_{n\to\infty} \frac{e^{ln(n!)} \cdot e^n}{e^{n\ln(n)}\cdot e^{\frac{1}{2}ln(n)}} \\
+&= \lim_{n\to\infty} \frac{n!e^n}{n^n\cdot\sqrt{n}} \\
+&= \lim_{n\to\infty} \frac{n!}{\sqrt{n}\cdot\left(\frac{n}{e}\right)^n} \\
+\end{align*}
+
+\end{theorem}
+\begin{proof}
+
 \end{proof}
 
 \end{document}

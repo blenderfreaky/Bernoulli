@@ -16,10 +16,11 @@ namespace Bernoulli
             this.denominator = denominator;
         }
 
+
         public static Fractional operator +(Fractional left, Fractional right) =>
             new Fractional(left.numerator*right.denominator + right.numerator*left.denominator, left.denominator * right.denominator);
 
-        public static Fractional operator -(Fractional value) => new Fractional(value.numerator, value.denominator);
+        public static Fractional operator -(Fractional value) => new Fractional(-value.numerator, value.denominator);
 
         public static Fractional operator -(Fractional left, Fractional right) =>
             left + (-right);
@@ -50,6 +51,7 @@ namespace Bernoulli
         public Fractional Shorten(BigInteger factor) => new Fractional(numerator / factor * denominator.Sign, denominator / factor * denominator.Sign);
 
         public static implicit operator Fractional(long val) => new Fractional(val, 1);
+        public static implicit operator Fractional(BigInteger val) => new Fractional(val, 1);
 
         public override string ToString() => $"{numerator} / {denominator}";
     }
