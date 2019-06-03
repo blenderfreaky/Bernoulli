@@ -58,6 +58,8 @@ Da der Terrm für \(k=n\) konstant ist, ist dessen Ableitung 0. Es kann demnach 
 Der nächste Schritt wird dem unüberzeugtem Leser als Übung überlassen.
 \end{proof}
 
+\[\Longrightarrow \int B_{n-1}(x) dx = \frac{1}{n} B_n(x)\]
+
 \paragraph{E3} 
 \[\int_0^1 B_n(x) dx = 0, \forall n\in\mathbb{N}, n \geq 1\]
 
@@ -109,12 +111,16 @@ Da \(n\) beliebig aber fest gewählt ist, gilt die Behauptung für alle \(n \in 
 \[B_{2m+1}=0, \forall m \in \mathbb{N}\]
 \end{corollary}
 \begin{proof}
+%TODO
+Sei \(n\) gerade.
 \[B_{n+1}(x+1) - B_{n+1}(x) = (n+1) \cdot x^n\]
 Sei \(x := -\frac{1}{2}\)
 \[B_{n+1}\left(1-\frac{1}{2}\right) - B_{n+1}\left(-\frac{1}{2}\right) = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
 \[B_{n+1}\left(\frac{1}{2}\right) - B_{n+1}\left(-\frac{1}{2}\right) = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
 \[\sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot \left(\frac{1}{2}\right)^{n+1-k} - \sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot \left(-\frac{1}{2}\right)^{n+1-k} = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
 \[\sum_{k=0}^{n+1} {n+1 \choose k} \cdot B_k \cdot \left(\left(\frac{1}{2}\right)^{n+1-k} - \left(-\frac{1}{2}\right)^{n+1-k}\right) = (n+1)\cdot\left(-\frac{1}{2}\right)^n\]
+Wenn \(n + 1 - k\) gerade ist, heben sich die Summanden auf. Da \(n\) gerade ist, ist \(n + 1 - k\) gerade genau dann, wenn \(1-k\) gerade ist, also wenn \(k\) ungerade ist.
+
 \end{proof}
 
 \begin{corollary}
@@ -131,6 +137,54 @@ Sei \(x := -\frac{1}{2}\)
 Laut Definition der Bernoulli Zahlen gilt:
 \[B_{n+1}(N+1) - 1 \cdot B_{n+1} - 0 = B_{n+1}(N+1) - B_{n+1}\]
 \[B_{n+1}(N+1) - B_{n+1} = B_{n+1}(N+1) - B_{n+1}\]
+\end{proof}
+
+\section{Euler'sche Summenformel}
+
+Wir setzen die Bernoulli Polynome auf \([0,1)\) periodisch fort auf \(\mathbb{R}\)
+
+\subsection{Definition}
+
+\[P_n(x) := B_n(x-[x])\]
+\[[x] := \max \{ k \in \mathbb{Z} | k \leq x \} \]
+
+\begin{theorem}{Einfache Euler'sche Summenformel}
+Sei \(n\in\mathbb{N}\) beliebig und \(f : [0, n] \to \mathbb{R}\) eine stetig differenzierbare Funktion.
+\[\sum_{k=0}^n f(k) = \int_0^n f(x) dx + \frac{1}{2} \cdot (f(0) + f(n)) + R\]
+wobei \(R_1 := \int_0^n f'(x) \cdot P_1(x) dx\)
+\end{theorem}
+\begin{proof}
+Sei \(k \in \mathbb{N}, x \in [k, k+1) \Longrightarrow P'_1(x) = P_0(x) = 1\)
+Für \(k \in \{ 0, 1, ..., n-1 \}\):
+
+\[\int_k^{k+1} f(x) dx = \int_k^{k+1} f(x) P'_1(x) dx = \lim_{\epsilon \downarrow 0} \int_k^{k+1-\epsilon} F(x) P'_1(x) dx\]
+\[= \lim_{\epsilon \downarrow 0} \left(\left. f(x) \cdot P_1(x) \right|_{x=k}^{k+1-\epsilon} - \int_k^{k+1-\epsilon} f'(x) P_1(x) dx \right) \] %TODO
+\[\lim_{\epsilon \downarrow 0} \left(f(k+1-\epsilon)P_1(k+1-\epsilon) -  f(k)P_1(k) - \int_k^{k+1-\epsilon} f'(x) P_1(x) dx \right)\]
+\[ = \frac{1}{2}(f(k+1)+f(k)) - \int_k^{k+1} f'(x) P_1(x) dx\]
+
+\[\int_k^{k+1} f(x) dx = \frac{1}{2}(f(k+1)+f(k)) - \int_k^{k+1} f'(x) P_1(x) dx\]
+
+Summieren wir die obige Gleichung für \(k = 0, 1, ..., n-1\)
+
+\[\int_0^n f(x) dx = \frac{1}{2} \sum_{k=0}^{n-1} \left(f(k+1) + f(k)\right) - \int_0^n f'(x) P_1(x) dx\]
+\[= \frac{1}{2}(f(0) + f(n)) + \sum_{k=1}^{n-1} f(k) - \int_0^n f'(x) P_1(x) dx\]
+
+Addiere auf beiden Seiten \(\frac{1}{2}(f(0) + f(n))\) und stelle um. Dann folgt die Behauptung.
+\end{proof}
+
+\begin{theorem}{Allgemeine Euler'sche Summenformel}
+Sei \(n \in \mathbb{N}\) und \(f : [0, n] \to \mathbb{R}\) sei n-mal stetig differenzierbar, \(m \geq 2\). Dann gilt:
+
+\[\sum_{k=0}^n f(k) = \int_0^n f(x) dx + \frac{1}{2}(f(0)+f(n)) + \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)} (x) \right|_{x=0}^n + R_m\]
+
+mit \(R_m := \frac{(-1)^{m+1}}{m!} \int_0^n f^{(m)}(x) P_m(x) dx\)
+\end{theorem}
+\begin{proof}
+Wegen Satz 1 reicht es zu zeigen \(\int_0^n f'(x) P_1(x) dx = \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)}(x) \right|_{x=0}^n + R_m\)
+
+\[\int_0^n f'(x) P_1(x) dx = \sum_{k=2}^m \left. \frac{(-1)^k B_k}{k!} f^{(k-1)}(x) \right|_{x=0}^n + R_m\]
+\[\int_0^n f'(x) P_1(x) dx = \left. \frac{1}{2!} f'(x) P_2(x) \right|_{x=0}^n + \left. \frac{1}{3!} f''(x) P_3(x) \right|_{x=0}^n + ...\]\[ + \left. \frac{1}{(m)!} f^{(m-1)}(x) P_{m}(x) \right|_{x=0}^n + \frac{(-1)^{m+1}}{m!} \int_0^n f^{(m)}(x) P_m(x) dx \]
+\[ = \sum_{k=2}^m \frac{P_{k}(x)}{k!} f^{(k-1)}(x) + \frac{(-1)^{m+1}}{m!} \int_0^n f^{(m)}(x) P_m(x) dx \]
 \end{proof}
 
 \end{document}
