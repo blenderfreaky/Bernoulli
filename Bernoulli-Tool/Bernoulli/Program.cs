@@ -13,15 +13,17 @@ namespace Bernoulli
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Harmonic().Get(10));
+            //Console.WriteLine(Harmonic().Get(10));
             //HarmonicDeviation(10000);
             //BernoulliNumbers(100000);
+
+
         }
 
-        public static FracRow FactorialApprox()
+        /*public static FracRow FactorialApprox()
         {
-            //for (BigInteger n = 0; ; n++) yield return (n, Math.Sqrt(2*Math.PI*n));
-        }
+            for (BigInteger n = 0; ; n++) yield return (n, Math.Sqrt(2*Math.PI*n));
+        }*/
 
         public static IntRow Factorial()
         {

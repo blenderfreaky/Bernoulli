@@ -46,7 +46,7 @@ namespace Bernoulli
             return a == 0 ? b : a;
         }
 
-        public Fractional Shorten() => Shorten(GCD(numerator, denominator));
+        public Fractional Shorten() => Shorten(BigInteger.GreatestCommonDivisor(numerator, denominator));
 
         public Fractional Shorten(BigInteger factor) => new Fractional(numerator / factor * denominator.Sign, denominator / factor * denominator.Sign);
 
