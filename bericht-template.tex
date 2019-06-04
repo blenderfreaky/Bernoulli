@@ -1,0 +1,829 @@
+\documentclass[10pt,a4paper, twoside]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{esvect}
+\usepackage{amsfonts}
+\usepackage[dvips]{epsfig}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{amsthm}
+\usepackage{comment} 
+
+\usepackage{mathtools} 
+\usepackage{pgf}
+%\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{enumitem}
+\usepackage{scrextend}    
+
+\usepackage{caption}
+\usepackage{tkz-euclide}
+\usetikzlibrary{intersections, through}
+\usepackage{listings}
+\newcommand{\norm}[1]{\lvert #1 \rvert}
+\newcommand{\eqtext}[1]{\ensuremath{\stackrel{\text{#1}}{=}}}
+\newcommand{\colvec}[2]{\begin{pmatrix}#1\\#2\end{pmatrix}}
+\def\cul#1#2{\color{#1}\underline{{\color{black}#2}}\color{black}}
+\newcounter{oursec}
+\renewcommand*\theoursec{\arabic{oursec}. }
+\newcounter{oursubsec}[oursec]
+\renewcommand*\theoursubsec{\arabic{oursec}.\arabic{oursubsec}. }
+\newcommand{\oursec}[1]{\vspace{4ex}\stepcounter{oursec}%
+{\Large\bf\theoursec #1\\[2ex]}}
+\newcommand{\oursubsec}[1]{\vspace{2ex}\stepcounter{oursubsec}%
+{\large\bf\theoursubsec #1\\[1ex]}}
+
+
+
+
+
+\titleformat*{\section}{\Large\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{1.2ex}
+
+
+
+
+\oddsidemargin0,95cm
+\evensidemargin0,95cm
+\textwidth16cm
+\textheight22.5cm
+\topmargin-1.5cm
+\hoffset-12mm
+\parskip2ex
+\parindent0cm
+
+\theoremstyle{definition}
+\newtheorem*{Beispiele}{Beispiele}
+
+\newtheorem{Beispiel}{Beispiel}[subsection]
+\renewcommand{\theBeispiel}{\arabic{Beispiel}}
+
+\newtheorem*{Aufgabe}{Aufgabe}
+\newtheorem*{Ueberlegung}{\"Uberlegung}
+\newtheorem*{Bezeichnung}{Bezeichnung}
+\newtheorem*{Algorithmus}{Algorithmus}
+\newtheorem*{Ansatz}{Ansatz}
+\newtheorem*{Behauptung}{Behauptung}
+
+\newtheorem{Korollar}{Korollar}[subsection]
+\renewcommand{\theKorollar}{\arabic{Korollar}}
+\newtheorem{Definition}{Definition}[subsection]
+\renewcommand{\theDefinition}{\arabic{Definition}}
+\newtheorem{Bemerkung}{Bemerkung}[subsection]
+\renewcommand{\theBemerkung}{\arabic{Bemerkung}}
+\newenvironment{Beweis}{\noindent\textbf{Beweis:}}{\hfill $\Box$ }
+
+
+\theoremstyle{plain}
+
+\newtheorem{Satz}{Satz}[subsection]
+\renewcommand{\theSatz}{\arabic{Satz}}
+\newtheorem{Lemma}{Lemma}[subsection]
+\renewcommand{\theLemma}{\arabic{Lemma}}
+
+
+
+\numberwithin{equation}{subsection}
+\renewcommand{\theequation}{\arabic{equation}}
+
+
+%% zusï¿œtzliche Befehle
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\cP}{{\cal P}}
+\newcommand\circlearound[1]{%
+  \tikz[baseline]\node[draw,shape=circle,anchor=base] {#1} ;}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{mylightlavender}{rgb}{0.9,0.9,1}
+\definecolor{mylavender}{rgb}{0.4,0,1}
+\definecolor{mygreen}{rgb}{0,0.6,0.4}
+\definecolor{myorange}{rgb}{1,0.5,0} 
+
+
+\pagestyle{empty}
+
+
+Humboldt-Universit"at zu Berlin
+
+Institut f"ur Mathematik
+
+Unter den Linden 6
+
+10099 Berlin\\[12mm]
+
+\begin{center}
+\textcolor{darkgreen}{\Huge{\textbf{19. Sommerschule}}}\\[6mm]
+
+\textcolor{darkgreen}{\Huge{\textbf{Lust auf Mathematik}}}\\[12mm]
+
+
+\Large{Berliner Netzwerk}
+
+\Large{mathematisch-naturwissenschaftlich}
+
+\Large{profilierter Schulen}\\[6mm]
+
+\textcolor{darkgreen}{\Huge{\textbf{02. Juni bis 07. Juni 2019}}}\\[6mm]
+
+\Large{im}
+
+\Large{Jugendbildungszentrum}
+
+\Large{Blossin e.V.}
+
+\Large{Waldweg 10,
+15754 Blossin}\\[12mm]
+
+
+
+\end{center}
+\pagebreak
+\( \)
+\pagebreak
+
+
+\begin{center}
+
+\vspace{-4cm}
+
+%\includegraphics[width=130mm]{Fotos/alle.png}
+
+\end{center}
+
+
+\pagebreak
+
+
+
+
+\tableofcontents
+\[\begin{array}{c}
+\\
+\end{array}\]
+
+\pagebreak
+\[\begin{array}{rcl}
+\\
+\end{array}\]
+
+\pagebreak
+\pagestyle{plain}
+\section*{Berichte der Gruppen}\addcontentsline{toc}{section}{Berichte der Gruppen}
+
+\subsection*{Sph"arische Geometrie}\addcontentsline{toc}{subsection}{Sph"arische Geometrie}
+
+\setcounter{Beispiel}{0}
+\setcounter{equation}{0}
+
+\setcounter{Satz}{0}
+\setcounter{Lemma}{0}
+\setcounter{Korollar}{0}
+\setcounter{Definition}{0}
+\setcounter{Bemerkung}{0}
+
+
+\vspace{0,5cm}
+\textit{Teilnehmer:}
+
+\begin{tabular}{lp{3mm}l}
+Luisa Aust&&Andreas-Gymnasium\\
+Jan B"ottger&&Herder-Gymnasium\\
+Murat Cecen&&Herder-Gymnasium\\
+Ben Lennart Han"ske&&Immanuel-Kant-Gymnasium\\
+Corban Hetscher&&Andreas-Gymnasium\\
+Tabea Menkens&&Herder-Gymnasium\\
+Franz Pfeiffer&&Andreas-Gymnasium\\
+Eric Wallisch&&Andreas-Gymnasium\\
+Torben Zepke&&Herder-Gymnasium\\[0,3cm]
+\textit{mit tatkr"aftiger Unterst"utzung durch:}\\
+
+Matthias Riddermann&& Humboldt-Universit\"at zu Berlin\\[0,3cm]
+
+\textit{Gruppenleiter:}\\
+
+
+Helga Baum&& Humboldt-Universit\"at zu Berlin\\
+\end{tabular}
+\begin{center}
+%\includegraphics[width = \textwidth]{Fotos/Helga.png}
+\end{center}
+
+\pagebreak
+
+\oursec{Erste "Uberschrift}
+
+Bitte benutzt diese Befehle und Umgebungen und definiert keine eigenen Befehle. 
+
+\begin{Beispiele}
+Sch"one Beispiele
+\end{Beispiele}
+
+\oursubsec{Untergeordnete "Uberschrift}
+
+\begin{Beispiel}
+
+sch"ones Beispiel
+\end{Beispiel}
+
+\begin{Aufgabe}
+interessante Aufgabe
+\end{Aufgabe}
+
+\begin{Ueberlegung}
+wichtige "Uberlegung
+\end{Ueberlegung}
+
+\begin{Bezeichnung}
+So wollen wir was bezeichnen...
+\end{Bezeichnung}
+
+\begin{Algorithmus}
+Diesen Algorithmus benutzen wird...
+\end{Algorithmus}
+\begin{Ansatz}
+Wir machen einen Ansatz
+\end{Ansatz}
+
+\begin{Behauptung}
+Wir behaupten...
+\end{Behauptung}
+
+\begin{Satz}
+Kluger Satz
+\end{Satz}
+\begin{Beweis}
+... mit einem klugen Beweis
+\end{Beweis}
+\begin{Korollar}
+... und einem klugen Korollar...
+\end{Korollar}
+
+\begin{Definition}
+So definieren wir...
+\end{Definition}
+\begin{Bemerkung}
+Das wollten wir schon immer mal feststellen...
+\end{Bemerkung}
+\begin{Lemma}
+Ein nicht ganz so gro"ser Satz... Aber trotzdem wichtig...
+\end{Lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\subsection*{Fraktale}\addcontentsline{toc}{subsection}{Fraktale}
+
+\setcounter{Beispiel}{0}
+\setcounter{equation}{0}
+
+\setcounter{Satz}{0}
+\setcounter{Lemma}{0}
+\setcounter{Korollar}{0}
+\setcounter{Definition}{0}
+\setcounter{Bemerkung}{0}
+\setcounter{oursec}{0}
+
+
+\vspace{0,5cm}
+\textit{Teilnehmer:}
+
+\begin{tabular}{lp{3mm}l}
+Dimitri Braun&&Heinrich-Hertz-Gymnasium\\
+Daniel Busch&& Heinrich-Hertz-Gymnasium\\
+Henrik Dickmann&&Heinrich-Hertz-Gymnasium\\
+Lukas H"aring&&Heinrich-Hertz-Gymnasium\\
+Miriahna Mahowski&&Andreas-Gymnasium\\
+Robert Redlich&&Heinrich-Hertz-Gymnasium\\
+Tita Rosemeyerr&&Heinrich-Hertz-Gymnasium\\
+Friederike Stiller&&K"athe-Kollwitz-Gymnasium\\
+Tan Mai Vu&& Heinrich-Hertz-Gymnasium\\
+[0,3cm]
+
+\textit{mit tatkr"aftiger Unterst"utzung durch:}\\
+
+Christoph Werner&&Humboldt-Universit\"at zu Berlin\\[0,3cm]
+
+\textit{Gruppenleiter:}\\
+
+
+Andreas Filler&& Humboldt-Universit\"at zu Berlin\\
+
+\end{tabular}
+\begin{center}
+%\includegraphics[width = \textwidth]{Fotos/Andreas.png}
+\end{center}
+
+\pagebreak
+
+
+\oursec{Erste "Uberschrift}
+
+Bitte benutzt diese Befehle und Umgebungen und definiert keine eigenen Befehle. 
+
+\begin{Beispiele}
+Sch"one Beispiele
+\end{Beispiele}
+
+\oursubsec{Untergeordnete "Uberschrift}
+
+\begin{Beispiel}
+
+sch"ones Beispiel
+\end{Beispiel}
+
+\begin{Aufgabe}
+interessante Aufgabe
+\end{Aufgabe}
+
+\begin{Ueberlegung}
+wichtige "Uberlegung
+\end{Ueberlegung}
+
+\begin{Bezeichnung}
+So wollen wir was bezeichnen...
+\end{Bezeichnung}
+
+\begin{Algorithmus}
+Diesen Algorithmus benutzen wird...
+\end{Algorithmus}
+\begin{Ansatz}
+Wir machen einen Ansatz
+\end{Ansatz}
+
+\begin{Behauptung}
+Wir behaupten...
+\end{Behauptung}
+
+\begin{Satz}
+Kluger Satz
+\end{Satz}
+\begin{Beweis}
+... mit einem klugen Beweis
+\end{Beweis}
+\begin{Korollar}
+... und einem klugen Korollar...
+\end{Korollar}
+
+\begin{Definition}
+So definieren wir...
+\end{Definition}
+\begin{Bemerkung}
+Das wollten wir schon immer mal feststellen...
+\end{Bemerkung}
+\begin{Lemma}
+Ein nicht ganz so gro"ser Satz... Aber trotzdem wichtig...
+\end{Lemma}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\pagebreak
+
+\subsection*{Hyperbolische Geometrie}\addcontentsline{toc}{subsection}{Hyperbolische Geometrie}
+
+\setcounter{Beispiel}{0}
+\setcounter{equation}{0}
+
+\setcounter{Satz}{0}
+\setcounter{Lemma}{0}
+\setcounter{Korollar}{0}
+\setcounter{Definition}{0}
+\setcounter{Bemerkung}{0}
+
+\setcounter{oursec}{0}
+
+
+\vspace{0,5cm}
+\textit{Teilnehmer:}
+
+\begin{tabular}{lp{3mm}l}
+Samuel Bamrungbhuet&& Heinrich-Hertz-Gymnasium\\
+Rahel Bensch&&Herder-Gymnasium\\
+Matthias Bier&& Heinrich-Hertz-Gymnasium\\
+Alec Dr"ucker&&Herder-Gymnasium\\
+Ingmar Glauche&&Herder-Gymnasium\\
+Marcal Herbrich&&Heinrich-Hertz-Gymnasium\\
+Quynh Chau Nguyen&&Heinrich-Hertz-Gymnasium\\
+Dennis Ossipov&&Heinrich-Hertz-Gymnasium\\
+Mark Shafranov&&Herder-Gymnasium\\
+[0,3cm]
+
+
+\textit{mit tatkr"aftiger  Unterst"utzung durch:}\\
+Luise Fehlinger && Humboldt-Universit\"at zu Berlin\\[0,3cm]
+
+\textit{Gruppenleiter:}\\
+
+Klaus Mohnke&& Humboldt-Universit\"at zu Berlin\\
+
+\end{tabular}
+
+\begin{center}
+%\includegraphics[width = \textwidth]{Fotos/Klaus.png}
+\end{center}
+
+\pagebreak
+
+\oursec{Erste "Uberschrift}
+
+Bitte benutzt diese Befehle und Umgebungen und definiert keine eigenen Befehle. 
+
+\begin{Beispiele}
+Sch"one Beispiele
+\end{Beispiele}
+
+\oursubsec{Untergeordnete "Uberschrift}
+
+\begin{Beispiel}
+
+sch"ones Beispiel
+\end{Beispiel}
+
+\begin{Aufgabe}
+interessante Aufgabe
+\end{Aufgabe}
+
+\begin{Ueberlegung}
+wichtige "Uberlegung
+\end{Ueberlegung}
+
+\begin{Bezeichnung}
+So wollen wir was bezeichnen...
+\end{Bezeichnung}
+
+\begin{Algorithmus}
+Diesen Algorithmus benutzen wird...
+\end{Algorithmus}
+\begin{Ansatz}
+Wir machen einen Ansatz
+\end{Ansatz}
+
+\begin{Behauptung}
+Wir behaupten...
+\end{Behauptung}
+
+\begin{Satz}
+Kluger Satz
+\end{Satz}
+\begin{Beweis}
+... mit einem klugen Beweis
+\end{Beweis}
+\begin{Korollar}
+... und einem klugen Korollar...
+\end{Korollar}
+
+\begin{Definition}
+So definieren wir...
+\end{Definition}
+\begin{Bemerkung}
+Das wollten wir schon immer mal feststellen...
+\end{Bemerkung}
+\begin{Lemma}
+Ein nicht ganz so gro"ser Satz... Aber trotzdem wichtig...
+\end{Lemma}
+
+ 
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Zuf"allig oder signifikant?}\addcontentsline{toc}{subsection}{Zuf"allig oder signifikant?}
+
+\setcounter{Beispiel}{0}
+\setcounter{equation}{0}
+
+\setcounter{Satz}{0}
+\setcounter{Lemma}{0}
+\setcounter{Korollar}{0}
+\setcounter{Definition}{0}
+\setcounter{Bemerkung}{0}
+
+\setcounter{oursec}{0}
+
+
+\vspace{0,5cm}
+\textit{Teilnehmer:}
+
+\begin{tabular}{lp{3mm}l}
+Aram Azarvash&&Herder-Gymnasium\\
+Ibo Becker&&K"athe-Kollwitz-Gymnasium\\
+Johanna Bellon&&Heinrich-Hertz-Gymnasium\\
+Anna Julia Hauschild&&Immanuel-Kant-Gymnasium\\
+Dennis Jurk&&Herder-Gymnasium\\
+Laura K"alberer&&Herder-Gymnasium\\
+Leonhard Klann&&Immanuel-Kant-Gymnasium\\
+Yassin Ouali&&Herder-Gymnasium\\[0,3cm]
+\textit{mit tatkr"aftiger  Unterst"utzung durch:}\\
+
+
+Niklas Sturm && Humboldt-Universit"at zu Berlin\\[0,3cm]
+
+
+\textit{Gruppenleiter:}\\
+
+Markus Rei"s&&Humboldt-Universit\"at zu Berlin\\
+Randolf Altmeyer&& Humboldt-Universit"at zu Berlin
+\end{tabular}
+
+
+\begin{center}
+
+%\includegraphics[width = \textwidth]{Fotos/Markus-Randolf.png}
+
+\end{center}
+
+\pagebreak
+
+
+\oursec{Erste "Uberschrift}
+
+Bitte benutzt diese Befehle und Umgebungen und definiert keine eigenen Befehle. 
+
+\begin{Beispiele}
+Sch"one Beispiele
+\end{Beispiele}
+
+\oursubsec{Untergeordnete "Uberschrift}
+
+\begin{Beispiel}
+
+sch"ones Beispiel
+\end{Beispiel}
+
+\begin{Aufgabe}
+interessante Aufgabe
+\end{Aufgabe}
+
+\begin{Ueberlegung}
+wichtige "Uberlegung
+\end{Ueberlegung}
+
+\begin{Bezeichnung}
+So wollen wir was bezeichnen...
+\end{Bezeichnung}
+
+\begin{Algorithmus}
+Diesen Algorithmus benutzen wird...
+\end{Algorithmus}
+\begin{Ansatz}
+Wir machen einen Ansatz
+\end{Ansatz}
+
+\begin{Behauptung}
+Wir behaupten...
+\end{Behauptung}
+
+\begin{Satz}
+Kluger Satz
+\end{Satz}
+\begin{Beweis}
+... mit einem klugen Beweis
+\end{Beweis}
+\begin{Korollar}
+... und einem klugen Korollar...
+\end{Korollar}
+
+\begin{Definition}
+So definieren wir...
+\end{Definition}
+\begin{Bemerkung}
+Das wollten wir schon immer mal feststellen...
+\end{Bemerkung}
+\begin{Lemma}
+Ein nicht ganz so gro"ser Satz... Aber trotzdem wichtig...
+\end{Lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection*{Vom Pendel "ubers Integral und Python zum L"otkolben und zur"ck}\addcontentsline{toc}{subsection}{Vom Pendel "ubers Integral und Python zum L"otkolben und zur"ck}
+
+\setcounter{Beispiel}{0}
+\setcounter{equation}{0}
+
+\setcounter{Satz}{0}
+\setcounter{Lemma}{0}
+\setcounter{Korollar}{0}
+\setcounter{Definition}{0}
+\setcounter{Bemerkung}{0}
+\setcounter{oursec}{0}
+
+\vspace{0,5cm}
+\textit{Teilnehmer:}
+
+\begin{tabular}{lp{3mm}l}
+Nadin Adham&&Herder-Gymnasium\\
+Florian Brandt&&K"athe-Kollwitz-Gymnasium\\
+Richard Fuchs&&Herder-Gymnasium\\
+Anselm Herkstr"oter&&Herder-Gymnasium\\
+Leonard Hiesgen&&Andreas-Gymnasium\\
+Conni M"arz&&Heinrich-Hertz-Gymnasium\\
+Malte Pasternak&&K"athe-Kollwitz-Gymnasium\\
+Jean-Pasqual Sindermann&Herder-Gymnasium\\
+Martin Wundermann&&K"athe-Kollwitz-Gymnasium\\[0,3cm]
+
+
+\textit{Gruppenleiter:}\\
+
+Claus F"uhrer&&Lund University\\
+Ren\'{e} Lamour&&Humboldt-Universit"at zu Berlin\\
+Caren Tischendorf&&Humboldt-Universit"at zu Berlin, MATH+
+
+\end{tabular}
+\begin{center}
+%\includegraphics[width = \textwidth]{Fotos/Lucas.png}
+\end{center}
+
+\pagebreak
+
+
+\oursec{Erste "Uberschrift}
+
+Bitte benutzt diese Befehle und Umgebungen und definiert keine eigenen Befehle. 
+
+\begin{Beispiele}
+Sch"one Beispiele
+\end{Beispiele}
+
+\oursubsec{Untergeordnete "Uberschrift}
+
+\begin{Beispiel}
+
+sch"ones Beispiel
+\end{Beispiel}
+
+\begin{Aufgabe}
+interessante Aufgabe
+\end{Aufgabe}
+
+\begin{Ueberlegung}
+wichtige "Uberlegung
+\end{Ueberlegung}
+
+\begin{Bezeichnung}
+So wollen wir was bezeichnen...
+\end{Bezeichnung}
+
+\begin{Algorithmus}
+Diesen Algorithmus benutzen wird...
+\end{Algorithmus}
+\begin{Ansatz}
+Wir machen einen Ansatz
+\end{Ansatz}
+
+\begin{Behauptung}
+Wir behaupten...
+\end{Behauptung}
+
+\begin{Satz}
+Kluger Satz
+\end{Satz}
+\begin{Beweis}
+... mit einem klugen Beweis
+\end{Beweis}
+\begin{Korollar}
+... und einem klugen Korollar...
+\end{Korollar}
+
+\begin{Definition}
+So definieren wir...
+\end{Definition}
+\begin{Bemerkung}
+Das wollten wir schon immer mal feststellen...
+\end{Bemerkung}
+\begin{Lemma}
+Ein nicht ganz so gro"ser Satz... Aber trotzdem wichtig...
+\end{Lemma}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection*{Die Euler'sche Summenformel}\addcontentsline{toc}{subsection}{{Sichere Kommunikation}Die Euler'sche Summenformel}
+
+\setcounter{Beispiel}{0}
+\setcounter{equation}{0}
+
+\setcounter{Satz}{0}
+\setcounter{Lemma}{0}
+\setcounter{Korollar}{0}
+\setcounter{Definition}{0}
+\setcounter{Bemerkung}{0}
+\setcounter{oursec}{0}
+
+\vspace{0,5cm}
+\textit{Teilnehmer:}
+
+\begin{tabular}{lp{3mm}l}
+
+Deniz Coskun&&K"athe-Kollwitz-Gymnasium\\
+Paul Cronin&&Heinrich-Hertz-Gymnasium\\
+Theodor Funke&&Herder-Gymnasium\\
+Emilia Grafe&&Andreas-Gymnasium\\
+Nikolas Kilian&&Heinrich-Hertz-Gymnasium\\
+Oona Kintscher&&K"athe-Kollwitz-Gymnasium\\
+Teresa L"offelhardt&&K"athe-Kollwitz-Gymnasium\\
+Mattan Schremmer&&K"athe-Kollwitz-Gymnasium\\
+Paul Siewert&&Heinrich-Hertz-Gymnasium\\[0,3cm]
+\textit{mit tatkr"aftiger Unterst"utzung durch:}\\
+Tobias Kretzschmar&&Humboldt-Universit\"at zu Berlin\\[0,3cm]
+\textit{Gruppenleiter:}\\
+
+Eren Ucar&&Humboldt-Universit"at zu Berlin
+
+\end{tabular}
+\begin{center}
+%\includegraphics[width = \textwidth]{Fotos/Eren.png}
+\end{center}
+
+\pagebreak
+
+\oursec{Erste "Uberschrift}
+
+Bitte benutzt diese Befehle und Umgebungen und definiert keine eigenen Befehle. 
+
+\begin{Beispiele}
+Sch"one Beispiele
+\end{Beispiele}
+
+\oursubsec{Untergeordnete "Uberschrift}
+
+\begin{Beispiel}
+
+sch"ones Beispiel
+\end{Beispiel}
+
+\begin{Aufgabe}
+interessante Aufgabe
+\end{Aufgabe}
+
+\begin{Ueberlegung}
+wichtige "Uberlegung
+\end{Ueberlegung}
+
+\begin{Bezeichnung}
+So wollen wir was bezeichnen...
+\end{Bezeichnung}
+
+\begin{Algorithmus}
+Diesen Algorithmus benutzen wird...
+\end{Algorithmus}
+\begin{Ansatz}
+Wir machen einen Ansatz
+\end{Ansatz}
+
+\begin{Behauptung}
+Wir behaupten...
+\end{Behauptung}
+
+\begin{Satz}
+Kluger Satz
+\end{Satz}
+\begin{Beweis}
+... mit einem klugen Beweis
+\end{Beweis}
+\begin{Korollar}
+... und einem klugen Korollar...
+\end{Korollar}
+
+\begin{Definition}
+So definieren wir...
+\end{Definition}
+\begin{Bemerkung}
+Das wollten wir schon immer mal feststellen...
+\end{Bemerkung}
+\begin{Lemma}
+Ein nicht ganz so gro"ser Satz... Aber trotzdem wichtig...
+\end{Lemma}
+
+
+\pagebreak
+
+
+\section*{Auswertung der Befragung}\addcontentsline{toc}{section}{Auswertung der Befragung}
+
+\end{document}
