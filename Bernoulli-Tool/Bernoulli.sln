@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28917.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bernoulli", "Bernoulli\Bernoulli.csproj", "{DB150F9C-620C-439B-A192-1E03EDBC7EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bernoulli", "Bernoulli\Bernoulli.csproj", "{DB150F9C-620C-439B-A192-1E03EDBC7EEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bernoulli-Tool", "Bernoulli-Tool\Bernoulli-Tool.csproj", "{767A926C-23EF-4AC1-8A16-81489B810E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB150F9C-620C-439B-A192-1E03EDBC7EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{767A926C-23EF-4AC1-8A16-81489B810E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{767A926C-23EF-4AC1-8A16-81489B810E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{767A926C-23EF-4AC1-8A16-81489B810E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{767A926C-23EF-4AC1-8A16-81489B810E85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

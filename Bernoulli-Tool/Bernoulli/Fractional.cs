@@ -32,27 +32,16 @@ namespace Bernoulli
             new Fractional(left.numerator * right.denominator, left.denominator * right.numerator);
 
 
-        private static BigInteger GCD(BigInteger a, BigInteger b)
-        {
-            a *= a.Sign;
-            b *= b.Sign;
-
-            while (a != 0 && b != 0)
-            {
-                if (a > b) a %= b;
-                else b %= a;
-            }
-
-            return a == 0 ? b : a;
-        }
-
         public Fractional Shorten() => Shorten(BigInteger.GreatestCommonDivisor(numerator, denominator));
 
         public Fractional Shorten(BigInteger factor) => new Fractional(numerator / factor * denominator.Sign, denominator / factor * denominator.Sign);
 
         public static implicit operator Fractional(long val) => new Fractional(val, 1);
         public static implicit operator Fractional(BigInteger val) => new Fractional(val, 1);
+        public static implicit operator BigDecimal(Fractional val) => 
+            new BigDecimal(val.numerator, 0) / new BigDecimal(val.denominator, 0);
 
         public override string ToString() => $"{numerator} / {denominator}";
+
     }
 }
