@@ -15,7 +15,7 @@ namespace Bernoulli
         {
             //Console.WriteLine(Harmonic().Get(10));
             //HarmonicDeviation(10000);
-            //BernoulliNumbers(100000);
+            BernoulliNumbers().Print(-1);
 
 
         }
@@ -56,7 +56,7 @@ namespace Bernoulli
             }
         }
 
-        public static void HarmonicDeviation() => Harmonic().Select(x => (x.index, x.value - (decimal)Math.Log((ulong)x.index))).Print();
+        public static void HarmonicDeviation() => Harmonic().Select(x => (x.index, x.value - (decimal)Math.Log((ulong)x.index))).Print(-1);
 
         public static DecRow Harmonic()
         {
@@ -67,10 +67,8 @@ namespace Bernoulli
 
         private static FracRow BernoulliNumbers()
         {
-            List<Fractional> bernoulli = new List<Fractional>
-            {
-                [0] = 1
-            };
+            List<Fractional> bernoulli = new List<Fractional>();
+            bernoulli.Add(1);
             Console.WriteLine($"B_{0}: {bernoulli[0]}");
 
             for (int n = 1; ; n++)
@@ -81,7 +79,9 @@ namespace Bernoulli
                     currentSum += Choose(n + 1, k) * bernoulli[k];
                 }
 
-                yield return (n, bernoulli[n] = (-currentSum / Choose(n + 1, n)).Shorten());
+                Fractional newVal = (-currentSum / Choose(n + 1, n)).Shorten();
+                bernoulli.Add(newVal);
+                yield return (n, newVal);
             }
         }
 
